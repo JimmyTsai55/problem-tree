@@ -30,14 +30,14 @@ Long brainstorming sessions lose track of themselves. You resolve A.1, wander in
 ## Install
 
 ```
-/plugin marketplace add jimmytsai/problem-tree
+/plugin marketplace add JimmyTsai55/problem-tree
 /plugin install problem-tree
 ```
 
 Or just the skill, without the Stop hook:
 
 ```
-git clone https://github.com/jimmytsai/problem-tree ~/.claude/skills/problem-tree-src
+git clone https://github.com/JimmyTsai55/problem-tree ~/.claude/skills/problem-tree-src
 ln -s ~/.claude/skills/problem-tree-src/skills/problem-tree ~/.claude/skills/problem-tree
 ```
 
@@ -105,14 +105,14 @@ MIT
 ## 安裝
 
 ```
-/plugin marketplace add jimmytsai/problem-tree
+/plugin marketplace add JimmyTsai55/problem-tree
 /plugin install problem-tree
 ```
 
 只裝 skill、不要 Stop hook：
 
 ```
-git clone https://github.com/jimmytsai/problem-tree ~/.claude/skills/problem-tree-src
+git clone https://github.com/JimmyTsai55/problem-tree ~/.claude/skills/problem-tree-src
 ln -s ~/.claude/skills/problem-tree-src/skills/problem-tree ~/.claude/skills/problem-tree
 ```
 
