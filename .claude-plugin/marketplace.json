@@ -1,0 +1,14 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "problem-tree",
+  "description": "Problem-tree tracking for brainstorming sessions.",
+  "owner": { "name": "Jimmy Tsai", "url": "https://github.com/jimmytsai" },
+  "plugins": [
+    {
+      "name": "problem-tree",
+      "description": "Track sub-problems as a Mermaid tree: solved / in progress / needs decision / blocked.",
+      "source": "./",
+      "category": "productivity"
+    }
+  ]
+}

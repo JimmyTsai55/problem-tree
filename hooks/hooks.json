@@ -1,0 +1,14 @@
+{
+  "hooks": {
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "prompt",
+            "prompt": "Only if this session is currently brainstorming AND no design document has been written yet: check that the problem tree under docs/superpowers/handoff/ reflects the latest state (status line, node markers/colors, the three lists). If it is stale, return ok:false and say what to update. In every other case (not brainstorming, design doc already written, tree already current) return ok:true with no explanation."
+          }
+        ]
+      }
+    ]
+  }
+}

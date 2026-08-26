@@ -1,0 +1,12 @@
+{
+  "name": "problem-tree",
+  "version": "0.1.0",
+  "description": "Track the tree of sub-problems during brainstorming: what's solved, what's blocked, what needs your decision, where you are now. Renders as Mermaid.",
+  "author": { "name": "Jimmy Tsai", "url": "https://github.com/jimmytsai" },
+  "homepage": "https://github.com/jimmytsai/problem-tree",
+  "repository": "https://github.com/jimmytsai/problem-tree",
+  "license": "MIT",
+  "keywords": ["brainstorming", "planning", "mermaid", "handoff", "superpowers"],
+  "skills": "./skills/",
+  "hooks": "./hooks/hooks.json"
+}
