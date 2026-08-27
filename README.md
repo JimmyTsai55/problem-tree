@@ -1,6 +1,11 @@
 # problem-tree
 
-A Claude Code skill that keeps a live **problem tree** while you brainstorm: which sub-problems are solved, which are blocked, which need *your* decision, and where you are right now. Stored as a Markdown file with a Mermaid diagram, so it renders in Cursor / VS Code / GitHub and survives across sessions.
+**Stop losing the thread in long brainstorming sessions with Claude.**
+
+A Claude Code skill that keeps a live problem tree while you brainstorm — what's solved, what's blocked, what needs *your* decision, and where you are right now. Plain Markdown + Mermaid, so it renders in Cursor / VS Code / GitHub and survives across sessions.
+
+<!-- TODO: replace with demo.gif — left: Claude chat, right: Cursor Mermaid preview updating as nodes turn green -->
+<!-- ![demo](docs/demo.gif) -->
 
 [中文說明](#中文說明)
 
@@ -91,6 +96,8 @@ MIT
 ---
 
 # 中文說明
+
+**跟 Claude brainstorming 聊到第三層就忘了根問題？這個 skill 幫你記。**
 
 在 brainstorming 過程中維護一棵**問題樹**：哪些子問題解決了、哪些被擋住、哪些等你拍板、現在在哪一顆。存成 Markdown + Mermaid，Cursor / VS Code / GitHub 都能畫圖，跨 session 不會丟。
 
