@@ -68,7 +68,7 @@ After each update Claude replies with one line: `Progress n/m ｜ Now: X ｜ Nex
   | Blocked | ⏸ | — | Blocked (on what) |
 
 - **Lists in order**: Needs decision → Blocked → Solved. Action items on top, finished work at the bottom.
-- **Guardrails**: one 🔶 at a time, depth ≤ 2, ≤ 5 children per node (more → split into roots A, B in the same file, ≤ 3 roots), node text ≤ 15 chars, only conclusions the user actually stated. More than 3 unfinished files in `handoff/` → Claude asks which one to close first.
+- **Guardrails**: one 🔶 at a time, depth ≤ 2, ≤ 5 children per node (a 6th → regroup by theme into two sibling roots A and B in the same file, renumbering B's children; if they don't split cleanly, merge instead; ≤ 3 roots), node text ≤ 15 chars, only conclusions the user actually stated. More than 3 unfinished files in `handoff/` → Claude asks which one to close first.
 
 ## Seeing the diagram
 
@@ -143,7 +143,7 @@ ln -s ~/.claude/skills/problem-tree-src/skills/problem-tree ~/.claude/skills/pro
   | 被擋住 | ⏸ | — | 被擋住（等誰） |
 
 - **清單順序**：等你決定 → 被擋住 → 已解決。行動項在上，做完的在下。
-- **護欄**：同時只有一個 🔶、深度最多兩層、一個父節點最多五個子節點（超過就拆成 A、B 兩個根放同檔，最多三個根）、節點文字 15 字內、只記使用者說過的結論。`handoff/` 未完成檔超過三個，Claude 會問要不要先結案一個。
+- **護欄**：同時只有一個 🔶、深度最多兩層、一個父節點最多五個子節點（第六個出現時依主題重新分組成 A、B 兩個同層的根放同檔，B 的子節點重新編號；分不出兩群就合併，不硬拆；最多三個根）、節點文字 15 字內、只記使用者說過的結論。`handoff/` 未完成檔超過三個，Claude 會問要不要先結案一個。
 
 ## 看圖
 

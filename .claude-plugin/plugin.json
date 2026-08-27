@@ -1,6 +1,6 @@
 {
   "name": "problem-tree",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Track the tree of sub-problems during brainstorming: what's solved, what's blocked, what needs your decision, where you are now. Renders as Mermaid.",
   "author": { "name": "Jimmy Tsai", "url": "https://github.com/JimmyTsai55" },
   "homepage": "https://github.com/JimmyTsai55/problem-tree",
