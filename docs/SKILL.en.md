@@ -18,6 +18,7 @@ One file per topic: `docs/superpowers/handoff/<topic>.md`, used from brainstormi
 ## 📌 SNAPSHOT
 
 **Progress 2/3 ｜ Now: A.2 Diff granularity ｜ Next: wait for PM to settle the granularity level**
+**Done when**: affected trigger records can be listed before a release, within 5% sampling error
 **Last updated**: 2026-10-14 15:30
 **Docs**: design docs/superpowers/specs/<file> ｜ plan docs/superpowers/plans/<file> (add once written)
 
@@ -70,6 +71,12 @@ Confirmed the trigger log can be traced back; set the rerun cap.
 `**Progress solved/child-nodes ｜ Now: X name ｜ Next: who does what**`
 "Next" is one sentence someone can act on immediately, not the name of a problem; after `/clear` no context is left to fill in a vague next step. During implementation, "Now" is the plan task.
 
+### Done when (the line under the status line)
+One verifiable completion condition that answers "what counts as done". devnote only records it and does not lead the discussion:
+- If the user has already confirmed success criteria (for example while clarifying purpose in brainstorming), copy them; do not ask again.
+- If there is none when the file is created, ask one question: "What counts as done?" If the user does not answer, write "not set" and carry on. Write your own idea as "not set (proposal: …)".
+- When the goal changes: SNAPSHOT keeps only the current version; HISTORY records what changed and why.
+
 ### Node markers (emoji + color, readable as plain text too)
 | State | Emoji | Color | Where the text goes |
 |---|---|---|---|
@@ -101,6 +108,7 @@ Prefer short and precise over padded and repeated. For a small-fix session, one 
 - At most five children per parent. When a sixth appears, first see whether the six split into two groups by theme; if so, split into two **sibling roots** A and B, renumber B's children, and count progress separately. If they do not split cleanly, the sub-problems are cut too fine: merge the similar ones instead of forcing a split. At most three roots per file; beyond that it is time to write the design doc.
 - Node text is 15 characters or fewer in Chinese (about 5 words in English) and states only the problem. Reasons, data and options go in the lists and HISTORY, not the diagram.
 - When a sub-problem is solved: mark the node ✅, add a one-line conclusion to "Solved & key decisions", move the current position back to the parent, update the progress count. When all children are ✅, the parent becomes ✅ too.
+- Goal met but unsolved nodes remain: once the user confirms they are dropped, delete those nodes from the tree, recount progress, and add one HISTORY line ("goal met, A.4 dropped"). There is no "dropped" state; the tree holds only what still stands.
 - The tree stops growing during implementation: plan tasks are not copied in, since the plan has its own checkboxes. Add a node only when a new design question surfaces.
 
 ### Notes
@@ -117,4 +125,5 @@ Prefer short and precise over padded and repeated. For a small-fix session, one 
 - **Wrap up / compact / switching sessions**: bring the file fully up to date and reply "Saved. After /clear, say 'continue' to pick up."
 - **Continue**: read only the SNAPSHOT, read out the status line, and wait for the user to confirm before acting.
 - **More than three unfinished files**: ask which one can be closed first.
-- **Close topic**: when the user says so, or all nodes are ✅ and the plan is done, move the file to `docs/superpowers/handoff/done/`.
+- **Creating the file**: write down the "Done when" goal; ask one question if there is none.
+- **Close topic**: when the user says so, or the goal is met and the plan is done, move the file to `docs/superpowers/handoff/done/`. If all nodes are ✅ but the goal is "not set" or not yet met, do not close automatically; ask the user first.

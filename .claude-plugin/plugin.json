@@ -1,6 +1,6 @@
 {
-  "name": "problem-tree",
-  "version": "0.2.0",
+  "name": "devnote",
+  "version": "0.2.1",
   "description": "A per-topic handoff note that replaces /compact: a live Mermaid problem tree plus decisions, pitfalls and open questions, from brainstorming through implementation.",
   "author": { "name": "Jimmy Tsai", "url": "https://github.com/JimmyTsai55" },
   "homepage": "https://github.com/JimmyTsai55/problem-tree",

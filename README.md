@@ -1,10 +1,10 @@
-# problem-tree
+# devnote
 
 **A handoff note that replaces `/compact`. Claude keeps one file per topic, with a live problem tree on top and the reasons underneath.**
 
 A Claude Code skill for work that outlives one context window. From brainstorming through implementation, Claude maintains `docs/superpowers/handoff/<topic>.md`: where you are, what is solved, what waits on you, which decisions hold and why, and which pitfalls you already paid for. After `/clear`, say "continue" and the next session picks up from the file alone.
 
-Since v0.2 the skill inside this plugin is called **devnote**: the problem tree is still on top, and the note now lasts through implementation. [中文說明](#中文說明)
+Formerly **problem-tree**. Since v0.2 the plugin and the skill are both called **devnote**, and the repository keeps its old name: the problem tree is still on top, and the note now lasts through implementation. [中文說明](#中文說明)
 
 ```mermaid
 graph TD
@@ -34,10 +34,11 @@ Each handoff file has two halves with opposite rules.
 The SNAPSHOT holds, in order:
 
 1. **Status line**: `Progress 2/3 ｜ Now: A.2 Diff granularity ｜ Next: wait for PM to settle the level`. "Next" must be an action, not a topic name.
-2. **Mermaid problem tree**: the single source of requirement status.
-3. **Open questions**: ❓ needs your decision (as a question, with a proposal), ⏸ blocked (on whom).
-4. **Solved & key decisions**: one line each, pointing to the HISTORY timestamp that has the reasoning.
-5. **Known pitfalls**: things that will bite again.
+2. **Done when**: one verifiable completion condition. Claude copies it from what you already agreed (for example in a brainstorming session) or asks once when the file is created.
+3. **Mermaid problem tree**: the single source of requirement status.
+4. **Open questions**: ❓ needs your decision (as a question, with a proposal), ⏸ blocked (on whom).
+5. **Solved & key decisions**: one line each, pointing to the HISTORY timestamp that has the reasoning.
+6. **Known pitfalls**: things that will bite again.
 
 Each HISTORY block records what was done, decisions in full (what, why, what was rejected, impact) and failures in full (what was tried, the final fix, the root cause).
 
@@ -55,6 +56,7 @@ Each HISTORY block records what was done, decisions in full (what, why, what was
 - **Two halves, because "now" and "why" age differently.** A new session needs the current state in ten seconds, so the SNAPSHOT is rewritten and never accumulates. Reasons must not be rewritten, so HISTORY is append-only.
 - **The tree replaces a checklist.** Keeping both means they drift. Emoji carry the state, so the tree still reads in a plain terminal.
 - **Guardrails keep the tree honest.** One 🔶 at a time, depth of two, five children per parent, three roots per file, short node text. A sixth child is regrouped by theme into sibling roots, or merged if no clean split exists. Hitting the limits is a signal to write the design doc.
+- **Closing is about the goal, not the count.** A tree can be all green without the purpose being met, and the purpose can be met with nodes left over. The file closes when the "Done when" goal is met; leftover nodes are deleted with a HISTORY line, not given a fifth state. devnote records the goal and leaves the discussion to you or to a brainstorming skill.
 - **The tree freezes during implementation.** Plan tasks stay in the plan, which has its own checkboxes. Only new design questions add nodes.
 - **Proposals are labelled.** Claude records only conclusions you stated. The next session treats the file as settled, so a wrong entry costs more than a missing one.
 - **Small on purpose.** A "classify before writing" table tells Claude what not to write. A fat file does not get read.
@@ -63,7 +65,7 @@ Each HISTORY block records what was done, decisions in full (what, why, what was
 
 ```
 /plugin marketplace add JimmyTsai55/problem-tree
-/plugin install problem-tree
+/plugin install devnote
 ```
 
 Or only the skill, without the Stop hook:
@@ -96,7 +98,7 @@ After each update Claude replies with one line: `Progress n/m ｜ Now: X ｜ Nex
 1. **Brainstorming**: the tree grows as sub-problems appear and resolve.
 2. **Design doc written**: the tree and key decisions are pasted at the top of the doc. The handoff file stays in use.
 3. **Implementation**: solved pitfalls go to HISTORY, recurring ones to Known pitfalls.
-4. **Closed**: when you say so, or all nodes are ✅ and the plan is done, the file moves to `docs/superpowers/handoff/done/`.
+4. **Closed**: when you say so, or the "Done when" goal is met and the plan is done, the file moves to `docs/superpowers/handoff/done/`.
 
 ## Seeing the diagram
 
@@ -116,7 +118,7 @@ The plugin ships a `Stop` prompt hook. When a handoff file is in use and somethi
 | Reasons and pitfalls | Not recorded | Recorded in HISTORY |
 | Ends when | Design doc is written | Topic is closed |
 
-The skill was renamed from `problem-tree` to `devnote`, so replace the old lines in your `CLAUDE.md` with the new [`docs/CLAUDE.md.snippet`](docs/CLAUDE.md.snippet). Existing handoff files keep working: the tree and status line are unchanged, and Claude adds the SNAPSHOT and HISTORY headings on the next update.
+The plugin and skill were renamed from `problem-tree` to `devnote`. Remove the old plugin, install again with the commands above, and replace the old lines in your `CLAUDE.md` with the new [`docs/CLAUDE.md.snippet`](docs/CLAUDE.md.snippet). Existing handoff files keep working: the tree and status line are unchanged, and Claude adds the SNAPSHOT and HISTORY headings on the next update.
 
 ## License
 
@@ -130,7 +132,7 @@ MIT
 
 給會跨過一個 context window 的工作用的 Claude Code skill。從 brainstorming 到實作結束，Claude 持續維護 `docs/superpowers/handoff/<topic>.md`：現在在哪、哪些解決了、哪些等你拍板、哪些決策仍然成立以及為什麼、哪些坑已經踩過。`/clear` 之後說「繼續」，下個 session 只讀這個檔就能接手。
 
-v0.2 起，這個 plugin 裡的 skill 改名為 **devnote**：問題樹還在最上面，筆記則一路用到實作結束。
+前身是 **problem-tree**。v0.2 起 plugin 和 skill 都改名為 **devnote**，repo 名稱維持不變：問題樹還在最上面，筆記則一路用到實作結束。
 
 ## 為什麼
 
@@ -148,10 +150,11 @@ v0.2 起，這個 plugin 裡的 skill 改名為 **devnote**：問題樹還在最
 SNAPSHOT 依序放：
 
 1. **狀態列**：`進度 2/3 ｜ 現在：A.2 差異粒度 ｜ 下一步：等 PM 拍板粒度層級`。「下一步」必須是動作，不是題目名稱。
-2. **Mermaid 問題樹**：需求狀態的唯一來源。
-3. **未解問題**：❓ 等你決定（寫成問句、附提案），⏸ 被擋住（寫等誰）。
-4. **已解決與關鍵決策**：一條一行，指回 HISTORY 的時間戳，理由在那裡。
-5. **已知地雷**：會再踩的坑。
+2. **結案目標**：一句可驗證的完成條件。你已經談定的（例如在 brainstorming 裡）Claude 直接照抄，沒有就在建檔時問一次。
+3. **Mermaid 問題樹**：需求狀態的唯一來源。
+4. **未解問題**：❓ 等你決定（寫成問句、附提案），⏸ 被擋住（寫等誰）。
+5. **已解決與關鍵決策**：一條一行，指回 HISTORY 的時間戳，理由在那裡。
+6. **已知地雷**：會再踩的坑。
 
 HISTORY 每塊記錄做了什麼、完整的決策（內容、理由、否決了什麼、影響）、完整的填坑經過（試過什麼無效、最終解法、根因）。
 
@@ -169,6 +172,7 @@ HISTORY 每塊記錄做了什麼、完整的決策（內容、理由、否決了
 - **分兩半，因為「現在」和「為什麼」的保存方式不同。** 新 session 要在十秒內知道現況，所以 SNAPSHOT 每次重寫、不累積。理由不能被改寫，所以 HISTORY 只增不改。
 - **用樹取代勾選清單。** 兩份並存一定會不同步。狀態由 emoji 表達，純終端機也讀得出來。
 - **護欄讓樹保持誠實。** 同時只有一個 🔶、深度兩層、一父最多五子、一檔最多三個根、節點文字要短。第六個子節點出現時依主題重新分成同層的根，分不乾淨就合併。撞到上限代表該寫設計文件了。
+- **結案看目標，不看數量。** 樹全綠不代表目的達成，目的達成時也可能還剩節點。結案目標達成才結案；剩下的節點刪掉並在 HISTORY 記一行，不另設第五種狀態。devnote 只記目標，討論交給你或 brainstorming skill。
 - **實作期樹凍結。** plan 的 task 留在 plan 裡，它自己有勾選。只有新的設計問題才加節點。
 - **提案要標示。** Claude 只記你說過的結論。下個 session 會把檔裡的內容當定案照做，記錯一條比漏記一條更糟。
 - **刻意保持精簡。** 「寫之前先分類」的表告訴 Claude 什麼不用寫。檔案一肥就沒人讀。
@@ -177,7 +181,7 @@ HISTORY 每塊記錄做了什麼、完整的決策（內容、理由、否決了
 
 ```
 /plugin marketplace add JimmyTsai55/problem-tree
-/plugin install problem-tree
+/plugin install devnote
 ```
 
 只裝 skill、不要 Stop hook：
@@ -210,7 +214,7 @@ ln -s ~/.claude/skills/problem-tree-src/skills/devnote ~/.claude/skills/devnote
 1. **Brainstorming**：子問題出現和解決，樹跟著長。
 2. **設計文件寫出**：樹和關鍵決策貼到設計文件開頭，handoff 檔繼續用。
 3. **實作**：解掉的坑進 HISTORY，會再踩的進已知地雷。
-4. **結案**：你說結案，或節點全 ✅ 且 plan 做完，檔移到 `docs/superpowers/handoff/done/`。
+4. **結案**：你說結案，或結案目標達成且 plan 做完，檔移到 `docs/superpowers/handoff/done/`。
 
 ## 看圖
 
@@ -230,7 +234,7 @@ plugin 附一個 `Stop` prompt hook：有 handoff 檔在用、而且發生了值
 | 理由與踩坑 | 不記 | 記在 HISTORY |
 | 何時結束 | 設計文件寫出 | 結案 |
 
-skill 從 `problem-tree` 改名為 `devnote`，請把 `CLAUDE.md` 裡的舊規則換成新的 [`docs/CLAUDE.md.snippet`](docs/CLAUDE.md.snippet)。既有的 handoff 檔可以繼續用：樹和狀態列格式不變，Claude 下次更新時會補上 SNAPSHOT 和 HISTORY 標題。
+plugin 和 skill 都從 `problem-tree` 改名為 `devnote`。請移除舊 plugin、用上面的指令重新安裝，並把 `CLAUDE.md` 裡的舊規則換成新的 [`docs/CLAUDE.md.snippet`](docs/CLAUDE.md.snippet)。既有的 handoff 檔可以繼續用：樹和狀態列格式不變，Claude 下次更新時會補上 SNAPSHOT 和 HISTORY 標題。
 
 ## 授權
 

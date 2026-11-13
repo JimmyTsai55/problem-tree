@@ -1,11 +1,11 @@
 {
   "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
-  "name": "problem-tree",
+  "name": "devnote",
   "description": "Handoff notes with a live problem tree, for sessions that outlive one context window.",
   "owner": { "name": "Jimmy Tsai", "url": "https://github.com/JimmyTsai55" },
   "plugins": [
     {
-      "name": "problem-tree",
+      "name": "devnote",
       "description": "Per-topic handoff note that replaces /compact: Mermaid problem tree, decisions, pitfalls, open questions.",
       "source": "./",
       "category": "productivity"
