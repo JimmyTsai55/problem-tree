@@ -1,12 +1,12 @@
 {
   "name": "problem-tree",
-  "version": "0.1.3",
-  "description": "Track the tree of sub-problems during brainstorming: what's solved, what's blocked, what needs your decision, where you are now. Renders as Mermaid.",
+  "version": "0.2.0",
+  "description": "A per-topic handoff note that replaces /compact: a live Mermaid problem tree plus decisions, pitfalls and open questions, from brainstorming through implementation.",
   "author": { "name": "Jimmy Tsai", "url": "https://github.com/JimmyTsai55" },
   "homepage": "https://github.com/JimmyTsai55/problem-tree",
   "repository": "https://github.com/JimmyTsai55/problem-tree",
   "license": "MIT",
-  "keywords": ["brainstorming", "planning", "mermaid", "handoff", "superpowers"],
+  "keywords": ["handoff", "compact", "brainstorming", "planning", "mermaid", "superpowers"],
   "skills": "./skills/",
   "hooks": "./hooks/hooks.json"
 }

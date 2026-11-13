@@ -5,7 +5,7 @@
         "hooks": [
           {
             "type": "prompt",
-            "prompt": "Only if this session is currently brainstorming AND no design document has been written yet: check that the problem tree under docs/superpowers/handoff/ reflects the latest state (status line, node markers/colors, the three lists). If it is stale, return ok:false and say what to update. In every other case (not brainstorming, design doc already written, tree already current) return ok:true with no explanation."
+            "prompt": "Only if this session is working on a topic that has an unfinished handoff file under docs/superpowers/handoff/ AND something noteworthy happened since the file was last updated (a sub-problem appeared or was resolved, the user made a decision, a pitfall was solved, or the user is wrapping up): check that the file's SNAPSHOT reflects the latest state (status line, Mermaid node markers/colors, open questions, decisions, pitfalls) and that this session has a HISTORY block for new decisions or pitfalls. If it is stale, return ok:false and say what to update. In every other case (no handoff file in use, nothing noteworthy happened, file already current) return ok:true with no explanation."
           }
         ]
       }
